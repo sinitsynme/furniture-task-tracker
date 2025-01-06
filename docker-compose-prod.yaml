@@ -1,0 +1,32 @@
+version: '3.9'
+
+services:
+  postgres:
+    env_file: .env
+    environment:
+      POSTGRES_USER: $PG_DB_USERNAME
+      POSTGRES_PASSWORD: $PG_DB_PASSWORD
+  nginx:
+    image: nginx:1.27.3
+    depends_on:
+      - furniture-count-app
+    container_name: furniture-count-nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    networks:
+      - furn_network
+  furniture-count-app:
+    build:
+      dockerfile: Dockerfile
+    depends_on:
+      - postgres
+    env_file: .env
+    environment:
+      DB_USERNAME: $PG_DB_USERNAME
+      DB_PASSWORD: $PG_DB_PASSWORD
+    ports:
+      - "8080:8080"
+    networks:
+      - furn_network
