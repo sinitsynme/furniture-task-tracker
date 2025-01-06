@@ -1,0 +1,3 @@
+databaseChangeLog:
+#  - include:
+#      file: liquibase/2025-01-06-example.yaml

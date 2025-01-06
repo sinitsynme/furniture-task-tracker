@@ -1,8 +1,10 @@
-
-
 spring:
   jpa:
     open-in-view: false
+    hibernate:
+      ddl-auto: none
+  liquibase:
+    change-log: classpath:/liquibase/changelog-master.yaml
   datasource:
     url: jdbc:postgresql://postgres:5432/furniture_count_db
     username: ${DB_USERNAME}
