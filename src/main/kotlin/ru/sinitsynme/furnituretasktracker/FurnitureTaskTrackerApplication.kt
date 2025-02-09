@@ -1,4 +1,4 @@
-package ru.sinitsynme.furniture_task_tracker
+package ru.sinitsynme.furnituretasktracker
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class FurnitureTaskTrackerApplication
 
 fun main(args: Array<String>) {
-	runApplication<FurnitureTaskTrackerApplication>(*args)
+    runApplication<FurnitureTaskTrackerApplication>(*args)
 }
