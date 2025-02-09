@@ -1,0 +1,56 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2025-02-09-add-schema-and-furniture-tables.yaml
+      author: sinitsynme
+      labels: example-label
+      comment: Database schema initialization. Basic furniture tables
+      changes:
+        - sql: >
+            CREATE SCHEMA IF NOT EXISTS furniture_task_tracker;
+        - sql: >
+            CREATE SEQUENCE furniture_model_pk_seq START 1 INCREMENT BY 1;
+            CREATE SEQUENCE furniture_config_pk_seq START 1 INCREMENT BY 1;
+        - createTable:
+            tableName: furniture_model
+            schemaName: furniture_task_tracker
+            columns:
+              - column:
+                  name: model_id
+                  type: bigint
+                  valueComputed: nextval(furniture_model_pk_seq)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+        - createTable:
+            tableName: furniture_config
+            schemaName: furniture_task_tracker
+            columns:
+              - column:
+                  name: config_id
+                  type: bigint
+                  valueComputed: nextval(furniture_config_pk_seq)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: price
+                  type: decimal
+                  constraints:
+                    nullable: false
+              - column:
+                  name: model_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: furniture_model_fk
+                    references: furniture_task_tracker.furniture_model(model_id)

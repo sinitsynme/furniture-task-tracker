@@ -3,6 +3,6 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5430/furniture_count_db
+    url: jdbc:postgresql://localhost:5430/furniture_count_db?currentSchema=furniture_task_tracker
     username: postgres
     password: postgres

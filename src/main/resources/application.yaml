@@ -2,13 +2,17 @@ spring:
   jpa:
     open-in-view: false
     hibernate:
-      ddl-auto: none
+      ddl-auto: validate
   liquibase:
     change-log: classpath:/liquibase/changelog-master.yaml
   datasource:
-    url: jdbc:postgresql://postgres:5432/furniture_count_db
+    url: jdbc:postgresql://postgres:5432/furniture_count_db?currentSchema=furniture_task_tracker
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
     hikari:
       connection-timeout: 10000
+
+springdoc:
+  swagger-ui:
+    path: /admin-swagger
