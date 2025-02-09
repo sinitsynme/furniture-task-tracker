@@ -2,7 +2,6 @@ package ru.sinitsynme.furnituretasktracker.furniture.configuration
 
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
-import org.springframework.http.HttpStatus
 import org.springframework.http.HttpStatus.CREATED
 import org.springframework.http.HttpStatus.NO_CONTENT
 import org.springframework.web.bind.annotation.*
@@ -37,6 +36,13 @@ class FurnitureConfigurationController(
         @PathVariable id: Long,
         @RequestBody request: FurnitureConfigurationRequest
     ): FurnitureConfigurationResponse = configService.update(id, request).toResponse()
+
+    @PutMapping("/{id}/price")
+    @Operation(summary = "Обновить стоимость")
+    fun updateConfigurationPrice(
+        @PathVariable id: Long,
+        @RequestBody request: FurnitureConfigurationUpdatePriceRequest
+    ): FurnitureConfigurationResponse = configService.updatePrice(id, request).toResponse()
 
     @DeleteMapping("/{id}")
     @ResponseStatus(NO_CONTENT)

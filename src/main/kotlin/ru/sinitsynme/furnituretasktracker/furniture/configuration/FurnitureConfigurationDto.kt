@@ -15,3 +15,7 @@ data class FurnitureConfigurationResponse(
     val price: BigDecimal,
     val model: FurnitureModelResponse,
 )
+
+data class FurnitureConfigurationUpdatePriceRequest(
+    val price: BigDecimal,
+)

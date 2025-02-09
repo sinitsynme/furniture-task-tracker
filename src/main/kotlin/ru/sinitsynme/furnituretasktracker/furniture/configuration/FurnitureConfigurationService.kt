@@ -1,5 +1,6 @@
 package ru.sinitsynme.furnituretasktracker.furniture.configuration
 
+import jakarta.transaction.Transactional
 import org.springframework.stereotype.Service
 import ru.sinitsynme.furnituretasktracker.exception.EntityNotFoundException
 import ru.sinitsynme.furnituretasktracker.furniture.model.FurnitureModelService
@@ -30,6 +31,7 @@ class FurnitureConfigurationService(
             .orElseThrow { EntityNotFoundException("FurnitureConfiguration not found with id: $id") }
 
 
+    @Transactional
     fun update(id: Long, request: FurnitureConfigurationRequest): FurnitureConfiguration {
         val existingConfig = configRepository.findById(id)
             .orElseThrow { EntityNotFoundException("FurnitureConfiguration not found with id: $id") }
@@ -41,6 +43,14 @@ class FurnitureConfigurationService(
             price = request.price
             model = modelFromDb
         }
+
+        return configRepository.save(existingConfig)
+    }
+
+    fun updatePrice(id: Long, request: FurnitureConfigurationUpdatePriceRequest): FurnitureConfiguration {
+        val existingConfig = configRepository.findById(id)
+            .orElseThrow { EntityNotFoundException("FurnitureConfiguration not found with id: $id") }
+        existingConfig.price = request.price
 
         return configRepository.save(existingConfig)
     }
