@@ -1,0 +1,6 @@
+style:
+  WildcardImport:
+    active: true
+    excludeImports:
+      - 'java.util.*'
+      - 'org.springframework.web.bind.annotation.*'

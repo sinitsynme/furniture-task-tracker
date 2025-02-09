@@ -1,9 +1,10 @@
 plugins {
-	kotlin("jvm") version "2.0.0"
+	kotlin("jvm") version "2.0.10"
 	kotlin("plugin.spring") version "2.0.0"
 	id("org.springframework.boot") version "3.4.1"
 	id("io.spring.dependency-management") version "1.1.7"
 	kotlin("plugin.jpa") version "1.9.25"
+	id("io.gitlab.arturbosch.detekt") version "1.23.7"
 }
 
 group = "ru.sinitsynme"
@@ -25,6 +26,7 @@ val swaggerUiVersion: String by project
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+	implementation("org.springframework.boot:spring-boot-starter-validation")
 	implementation("org.springframework.boot:spring-boot-starter-security")
 	implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
 	implementation("org.springframework.boot:spring-boot-starter-web")
@@ -46,6 +48,11 @@ kotlin {
 	compilerOptions {
 		freeCompilerArgs.addAll("-Xjsr305=strict")
 	}
+}
+
+detekt {
+	buildUponDefaultConfig = true
+	config.setFrom("$projectDir/detekt.yml")
 }
 
 allOpen {
