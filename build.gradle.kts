@@ -23,6 +23,7 @@ repositories {
 
 val liquibaseVersion: String by project
 val swaggerUiVersion: String by project
+val testcontainersVersion: String by project
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
@@ -41,6 +42,8 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
 	testImplementation("org.springframework.security:spring-security-test")
+	testImplementation("org.testcontainers:testcontainers:$testcontainersVersion")
+	testImplementation("org.testcontainers:postgresql:$testcontainersVersion")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
