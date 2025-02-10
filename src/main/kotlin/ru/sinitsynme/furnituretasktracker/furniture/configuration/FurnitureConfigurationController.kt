@@ -17,32 +17,32 @@ class FurnitureConfigurationController(
     @PostMapping
     @ResponseStatus(CREATED)
     @Operation(summary = "Создать")
-    fun createConfiguration(@RequestBody request: FurnitureConfigurationRequest): FurnitureConfigurationResponse =
+    fun createConfiguration(@RequestBody request: FurnitureConfigurationRequestDto): FurnitureConfigurationResponseDto =
         configService.create(request).toResponse()
 
     @GetMapping
     @Operation(summary = "Получить все")
-    fun getAllConfigurations(): List<FurnitureConfigurationResponse> =
+    fun getAllConfigurations(): List<FurnitureConfigurationResponseDto> =
         configService.findAll().map { it.toResponse() }
 
     @GetMapping("/{id}")
     @Operation(summary = "Получить")
-    fun getConfiguration(@PathVariable id: Long): FurnitureConfigurationResponse =
+    fun getConfiguration(@PathVariable id: Long): FurnitureConfigurationResponseDto =
         configService.findById(id).toResponse()
 
     @PutMapping("/{id}")
     @Operation(summary = "Обновить")
     fun updateConfiguration(
         @PathVariable id: Long,
-        @RequestBody request: FurnitureConfigurationRequest
-    ): FurnitureConfigurationResponse = configService.update(id, request).toResponse()
+        @RequestBody request: FurnitureConfigurationRequestDto
+    ): FurnitureConfigurationResponseDto = configService.update(id, request).toResponse()
 
     @PutMapping("/{id}/price")
     @Operation(summary = "Обновить стоимость")
     fun updateConfigurationPrice(
         @PathVariable id: Long,
-        @RequestBody request: FurnitureConfigurationUpdatePriceRequest
-    ): FurnitureConfigurationResponse = configService.updatePrice(id, request).toResponse()
+        @RequestBody request: FurnitureConfigurationUpdatePriceRequestDto
+    ): FurnitureConfigurationResponseDto = configService.updatePrice(id, request).toResponse()
 
     @DeleteMapping("/{id}")
     @ResponseStatus(NO_CONTENT)
@@ -53,7 +53,7 @@ class FurnitureConfigurationController(
 }
 
 
-fun FurnitureConfiguration.toResponse() = FurnitureConfigurationResponse(
+fun FurnitureConfiguration.toResponse() = FurnitureConfigurationResponseDto(
     configId = configId!!,
     name = name,
     price = price,

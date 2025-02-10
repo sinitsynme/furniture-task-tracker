@@ -11,7 +11,7 @@ class FurnitureConfigurationService(
     private val modelService: FurnitureModelService,
 ) {
 
-    fun create(request: FurnitureConfigurationRequest): FurnitureConfiguration {
+    fun create(request: FurnitureConfigurationRequestDto): FurnitureConfiguration {
         val model = modelService.findById(request.modelId)
 
         val newConfig = FurnitureConfiguration(
@@ -32,7 +32,7 @@ class FurnitureConfigurationService(
 
 
     @Transactional
-    fun update(id: Long, request: FurnitureConfigurationRequest): FurnitureConfiguration {
+    fun update(id: Long, request: FurnitureConfigurationRequestDto): FurnitureConfiguration {
         val existingConfig = configRepository.findById(id)
             .orElseThrow { EntityNotFoundException("FurnitureConfiguration not found with id: $id") }
 
@@ -47,7 +47,8 @@ class FurnitureConfigurationService(
         return configRepository.save(existingConfig)
     }
 
-    fun updatePrice(id: Long, request: FurnitureConfigurationUpdatePriceRequest): FurnitureConfiguration {
+    @Transactional
+    fun updatePrice(id: Long, request: FurnitureConfigurationUpdatePriceRequestDto): FurnitureConfiguration {
         val existingConfig = configRepository.findById(id)
             .orElseThrow { EntityNotFoundException("FurnitureConfiguration not found with id: $id") }
         existingConfig.price = request.price
@@ -55,6 +56,7 @@ class FurnitureConfigurationService(
         return configRepository.save(existingConfig)
     }
 
+    @Transactional
     fun delete(id: Long) {
         if (!configRepository.existsById(id)) {
             throw EntityNotFoundException("FurnitureConfiguration not found with id: $id")

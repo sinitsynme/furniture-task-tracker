@@ -10,7 +10,7 @@ class FurnitureModelService(
     private val modelRepository: FurnitureModelRepository,
 ) {
 
-    fun create(request: FurnitureModelRequest): FurnitureModel {
+    fun create(request: FurnitureModelRequestDto): FurnitureModel {
         val newModel = FurnitureModel(name = request.name)
         return modelRepository.save(newModel)
     }
@@ -22,7 +22,8 @@ class FurnitureModelService(
         modelRepository.findById(id)
             .orElseThrow { EntityNotFoundException("Model not found with id: $id") }
 
-    fun update(id: Long, request: FurnitureModelRequest): FurnitureModel {
+    @Transactional
+    fun update(id: Long, request: FurnitureModelRequestDto): FurnitureModel {
         val existingModel = modelRepository.findById(id)
             .orElseThrow { EntityNotFoundException("Model not found with id: $id") }
         existingModel.name = request.name
