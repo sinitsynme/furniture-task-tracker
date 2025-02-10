@@ -1,0 +1,68 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2025-02-10-add-task-and-worker-tables.yaml
+      author: sinitsynme
+      comment: Add furniture task and worker tables
+      changes:
+        - createTable:
+            tableName: worker
+            schemaName: furniture_task_tracker
+            columns:
+              - column:
+                  name: worker_id
+                  type: uuid
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: full_name
+                  type: varchar(200)
+                  constraints:
+                    nullable: false
+        - createTable:
+            tableName: task
+            schemaName: furniture_task_tracker
+            columns:
+              - column:
+                  name: task_id
+                  type: uuid
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: quantity
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: final_cost
+                  type: decimal
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: registration_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: completion_date
+                  type: timestamp
+              - column:
+                  name: config_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: furniture_config_fk
+                    references: furniture_task_tracker.furniture_config(config_id)
+              - column:
+                  name: worker_id
+                  type: uuid
+                  constraints:
+                    nullable: false
+                    foreignKeyName: worker_fk
+                    references: furniture_task_tracker.worker(worker_id)
