@@ -9,16 +9,21 @@ import org.testcontainers.containers.PostgreSQLContainer
 import org.testcontainers.utility.DockerImageName
 import org.testcontainers.utility.MountableFile
 
+private val POSTGRES_USERNAME = "postgres"
+private val POSTGRES_PASSWORD = "postgres"
+private val POSTGRES_DB_NAME = "furniture-count-db"
+
 @AutoConfigureTestDatabase(replace = NONE)
 abstract class AbstractIntegrationTest {
 
     companion object {
 
+
         private val postgres: PostgreSQLContainer<*> = PostgreSQLContainer(DockerImageName.parse("postgres:17.2"))
             .apply {
-                this.withDatabaseName("furniture-count-db")
-                    .withUsername("postgres")
-                    .withPassword("postgres")
+                this.withDatabaseName(POSTGRES_DB_NAME)
+                    .withUsername(POSTGRES_USERNAME)
+                    .withPassword(POSTGRES_PASSWORD)
                     .withCopyToContainer(
                         MountableFile.forClasspathResource("/schema.sql"),
                         "/docker-entrypoint-initdb.d/init.sql"
