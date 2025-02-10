@@ -24,6 +24,7 @@ repositories {
 val liquibaseVersion: String by project
 val swaggerUiVersion: String by project
 val testcontainersVersion: String by project
+val lokiLogbackAppender: String by project
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
@@ -36,6 +37,7 @@ dependencies {
 	implementation("org.thymeleaf.extras:thymeleaf-extras-springsecurity6")
 	implementation("org.liquibase:liquibase-core:$liquibaseVersion")
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:$swaggerUiVersion")
+	implementation("com.github.loki4j:loki-logback-appender:$lokiLogbackAppender")
 
 	runtimeOnly("org.postgresql:postgresql")
 
