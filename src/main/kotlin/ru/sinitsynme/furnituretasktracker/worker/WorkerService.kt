@@ -27,14 +27,4 @@ class WorkerService(
         worker.fullName = request.fullName
         return workerRepository.save(worker)
     }
-
-    @Transactional
-    fun delete(id: UUID) {
-        if (!workerRepository.existsById(id)) {
-            throw EntityNotFoundException("Worker not found with id: $id")
-        }
-        workerRepository.deleteById(id)
-    }
-
-
 }

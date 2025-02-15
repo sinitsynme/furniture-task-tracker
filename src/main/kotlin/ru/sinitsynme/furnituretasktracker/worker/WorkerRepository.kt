@@ -5,4 +5,4 @@ import org.springframework.stereotype.Repository
 import java.util.UUID
 
 @Repository
-interface WorkerRepository: JpaRepository<Worker, UUID>
+interface WorkerRepository : JpaRepository<Worker, UUID>
