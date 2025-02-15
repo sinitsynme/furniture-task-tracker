@@ -1,10 +1,15 @@
 package ru.sinitsynme.furnituretasktracker.furniture.model
 
-data class FurnitureModelRequest(
+data class FurnitureModelRequestDto(
     val name: String
 )
 
-data class FurnitureModelResponse(
+data class FurnitureModelResponseDto(
     val modelId: Long,
     val name: String
+)
+
+fun FurnitureModel.toResponse() = FurnitureModelResponseDto(
+    modelId = modelId!!,
+    name = name
 )

@@ -1,0 +1,8 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2025-02-15-add-parent-task-column.yaml
+      author: sinitsynme
+      comment: Add parent task id column to task table
+      changes:
+        - sql:
+            sql: ALTER TABLE furniture_task_tracker.task ADD COLUMN parent_task_id UUID REFERENCES furniture_task_tracker.task(task_id)

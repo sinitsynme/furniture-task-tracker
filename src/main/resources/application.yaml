@@ -1,4 +1,6 @@
 spring:
+  application:
+    name: furniture-task-tracker
   jpa:
     open-in-view: false
     hibernate:
@@ -17,3 +19,9 @@ spring:
 springdoc:
   swagger-ui:
     path: /admin-swagger
+
+loki:
+  url: http://loki:3100
+
+clock:
+  timezone: Europe/Moscow

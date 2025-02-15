@@ -15,23 +15,23 @@ class FurnitureModelController(
     @PostMapping
     @ResponseStatus(CREATED)
     @Operation(summary = "Создать")
-    fun createModel(@RequestBody request: FurnitureModelRequest): FurnitureModelResponse =
+    fun createModel(@RequestBody request: FurnitureModelRequestDto): FurnitureModelResponseDto =
         modelService.create(request).toResponse()
 
     @GetMapping
     @Operation(summary = "Получить все")
-    fun getAllModels(): List<FurnitureModelResponse> = modelService.findAll().map { it.toResponse() }
+    fun getAllModels(): List<FurnitureModelResponseDto> = modelService.findAll().map { it.toResponse() }
 
     @GetMapping("/{id}")
     @Operation(summary = "Получить")
-    fun getModel(@PathVariable id: Long): FurnitureModelResponse = modelService.findById(id).toResponse()
+    fun getModel(@PathVariable id: Long): FurnitureModelResponseDto = modelService.findById(id).toResponse()
 
     @PutMapping("/{id}")
     @Operation(summary = "Обновить")
     fun updateModel(
         @PathVariable id: Long,
-        @RequestBody request: FurnitureModelRequest
-    ): FurnitureModelResponse = modelService.update(id, request).toResponse()
+        @RequestBody request: FurnitureModelRequestDto
+    ): FurnitureModelResponseDto = modelService.update(id, request).toResponse()
 
     @DeleteMapping("/{id}")
     @Operation(summary = "Удалить")
@@ -39,7 +39,3 @@ class FurnitureModelController(
     fun deleteModel(@PathVariable id: Long) = modelService.delete(id)
 }
 
-fun FurnitureModel.toResponse() = FurnitureModelResponse(
-    modelId = modelId!!,
-    name = name
-)
