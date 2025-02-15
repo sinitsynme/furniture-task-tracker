@@ -1,6 +1,7 @@
 package ru.sinitsynme.furnituretasktracker.furniture.configuration
 
 import ru.sinitsynme.furnituretasktracker.furniture.model.FurnitureModelResponseDto
+import ru.sinitsynme.furnituretasktracker.furniture.model.toResponse
 import java.math.BigDecimal
 
 data class FurnitureConfigurationRequestDto(
@@ -18,4 +19,11 @@ data class FurnitureConfigurationResponseDto(
 
 data class FurnitureConfigurationUpdatePriceRequestDto(
     val price: BigDecimal,
+)
+
+fun FurnitureConfiguration.toResponse(): FurnitureConfigurationResponseDto = FurnitureConfigurationResponseDto(
+    configId = configId!!,
+    name = name,
+    price = price,
+    model = model.toResponse()
 )

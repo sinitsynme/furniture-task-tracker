@@ -5,7 +5,6 @@ import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.http.HttpStatus.CREATED
 import org.springframework.http.HttpStatus.NO_CONTENT
 import org.springframework.web.bind.annotation.*
-import ru.sinitsynme.furnituretasktracker.furniture.model.toResponse
 
 @RestController
 @RequestMapping("/api/v1/furniture-configuration")
@@ -53,9 +52,3 @@ class FurnitureConfigurationController(
 }
 
 
-fun FurnitureConfiguration.toResponse() = FurnitureConfigurationResponseDto(
-    configId = configId!!,
-    name = name,
-    price = price,
-    model = model.toResponse()
-)

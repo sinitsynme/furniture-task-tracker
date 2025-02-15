@@ -39,7 +39,3 @@ class FurnitureModelController(
     fun deleteModel(@PathVariable id: Long) = modelService.delete(id)
 }
 
-fun FurnitureModel.toResponse() = FurnitureModelResponseDto(
-    modelId = modelId!!,
-    name = name
-)
