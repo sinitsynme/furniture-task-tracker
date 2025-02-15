@@ -22,3 +22,6 @@ springdoc:
 
 loki:
   url: http://loki:3100
+
+clock:
+  timezone: Europe/Moscow
