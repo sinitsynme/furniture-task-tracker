@@ -1,5 +1,3 @@
 databaseChangeLog:
-  - include:
-      file: liquibase/changelogs/2025-02-09-add-schema-and-furniture-tables.yaml
-  - include:
-      file: liquibase/changelogs/2025-02-10-add-task-and-worker-tables.yaml
+  - includeAll:
+      path: liquibase/changelogs/
